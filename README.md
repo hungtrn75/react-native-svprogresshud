@@ -68,7 +68,7 @@ SVProgressHUD.showError(status: 'Có lỗi xảy ra!');
 ## API
 ### Props
 - `status` - `string`
-- `color` - `int`
+- `color` - `array` - `[red, green, blue, alpha]` - `alpha` between `0` and `1` or between `0` and `255` 
 ### Functions
 #### `void show(status)`
 ---
