@@ -227,6 +227,7 @@ SVProgressHUD.showError("Có lỗi xảy ra!");
 ## Running the example app
 
 While developing, you can run the example app to test your changes.
+<img src="screenshots/example.png" alt="drawing" width="200"/>
 
 ## Setup
 

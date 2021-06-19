@@ -8,32 +8,107 @@
  * https://github.com/facebook/react-native
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {
+  Dimensions,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import SVProgressHUD from 'react-native-svprogresshud';
 
-export default class App extends Component {
-  state = {
-    status: 'starting',
-    message: '--',
+const {width, height} = Dimensions.get('window');
+
+const App = () => {
+  const timeout = React.useRef(null);
+  const interval = React.useRef(null);
+
+  const clear = () => {
+    if (timeout.current) clearTimeout(timeout.current);
+    if (interval.current) clearInterval(interval.current);
   };
 
-  onPress2 = async () => {
-    console.log(Number(0xffff0000));
-    // console.log(255.toString(16));
-    const raw = 'rgba(0,0,0,0.5)';
-    if (raw.includes('rgba')) {
-      const arr = raw.split(',');
-      console.log(arr);
-    }
-    // const color = Color();
-    // console.log(color.hex());
-  };
-  onPress3 = async () => {
-    // SVProgressHUD.showInfo();
-    // SVProgressHUD.showProgress(0.5, 'Loading...');
-    // SVProgressHUD.showProgress(0.5);
+  React.useEffect(() => {
+    return () => {
+      clear();
+    };
+  });
 
+  const dismissAfter5s = () => {
+    clear();
+    timeout.current = setTimeout(SVProgressHUD.dismiss, 5000);
+  };
+  const show = () => {
+    clear();
+    SVProgressHUD.show();
+    dismissAfter5s();
+  };
+
+  const showWithStatus = () => {
+    clear();
+    SVProgressHUD.show('LOADING...');
+    dismissAfter5s();
+  };
+
+  const showProgress = () => {
+    clear();
+    let progress = 1;
+    interval.current = setInterval(() => {
+      progress += 1;
+      if (progress >= 100) {
+        clear();
+        SVProgressHUD.dismiss();
+        return;
+      }
+      SVProgressHUD.showProgress(progress / 100, '');
+    }, 50);
+  };
+
+  const showProgressWithStatus = () => {
+    clear();
+    let progress = 1;
+    interval.current = setInterval(() => {
+      progress += 1;
+      if (progress >= 100) {
+        clear();
+        SVProgressHUD.dismiss();
+        return;
+      }
+      SVProgressHUD.showProgress(progress / 100, 'Loading...');
+    }, 50);
+  };
+  const showInfoWithStatus = () => {
+    clear();
+    SVProgressHUD.setForegroundColor([0, 0, 255, 255]);
+    SVProgressHUD.showInfo('Useful Information.');
+    // dismissAfter5s()
+  };
+  const showSuccessWithStatus = () => {
+    clear();
+    SVProgressHUD.setForegroundColor([0, 255, 0, 255]);
+    SVProgressHUD.showSuccess('Great Success!');
+    // dismissAfter5s()
+  };
+
+  const showErrorWithStatus = () => {
+    clear();
+    SVProgressHUD.setForegroundColor([255, 0, 0, 255]);
+    SVProgressHUD.showError('Failed with Error');
+    // dismissAfter5s()
+  };
+
+  const dismiss = () => {
+    SVProgressHUD.dismiss();
+  };
+
+  const dismissWithDelay1s = () => {
+    SVProgressHUD.dismiss(2000);
+  };
+
+  const custom = () => {
+    clear();
     if (Platform.OS == 'android') {
       SVProgressHUD.setBackgroundColor([0, 255, 0, 255]);
       SVProgressHUD.setForegroundColor([255, 255, 255, 255]);
@@ -41,44 +116,81 @@ export default class App extends Component {
       SVProgressHUD.setDefaultStyle('custom');
     } else {
       SVProgressHUD.setDefaultStyle('dark');
+      SVProgressHUD.setMinimumSize(150, 150);
       SVProgressHUD.setBackgroundColor([255, 255, 255, 255]);
       SVProgressHUD.setForegroundColor([255, 0, 0, 255]);
       SVProgressHUD.setDefaultMaskType('black');
     }
-    // SVProgressHUD.showProgress(0.28, 'Đang xử lý...');
-    SVProgressHUD.showError('Có lỗi xảy ra!');
-    setTimeout(SVProgressHUD.dismiss, 5000);
+    SVProgressHUD.show('Loading...');
+    dismissAfter5s();
   };
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={styles.t1}>React Native SVProgressHUD Example</Text>
+        <BaseButton title="Show" onPress={show} />
+        <BaseButton title="Show With Status" onPress={showWithStatus} />
+        <BaseButton title="Show Progress" onPress={showProgress} />
+        <BaseButton
+          title="Show Progress With Status"
+          onPress={showProgressWithStatus}
+        />
+        <BaseButton
+          title="Show Success With Status"
+          onPress={showSuccessWithStatus}
+        />
+        <BaseButton
+          title="Show Info With Status"
+          onPress={showInfoWithStatus}
+        />
+        <BaseButton
+          title="Show Error With Status"
+          onPress={showErrorWithStatus}
+        />
+        <BaseButton title="Dismiss" onPress={dismiss} />
+        <BaseButton title="Dismiss With Delay" onPress={dismissWithDelay1s} />
+        <BaseButton title="Custom SVProgressHUD" onPress={custom} />
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity onPress={this.onPress3}>
-          <Text>Show</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-}
+const BaseButton = ({title, onPress}) => {
+  return (
+    <TouchableOpacity onPress={onPress} style={styles.t2}>
+      <Text style={styles.t3}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  t1: {
+    fontSize: 16,
+    letterSpacing: 0.5,
+    fontWeight: 'bold',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  t2: {
+    height: 46,
+    width: 0.9 * width,
+    backgroundColor: '#007aff',
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 15,
   },
-  mt: {
-    marginBottom: 20,
+  t3: {
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
+    fontSize: 15,
+    color: 'white',
+    textTransform: 'uppercase',
   },
 });
