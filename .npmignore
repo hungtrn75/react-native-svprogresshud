@@ -43,6 +43,7 @@ buck-out/
 
 /.github
 /android/build/
+/android/.gradle/
 /website/
 /docs/
 
