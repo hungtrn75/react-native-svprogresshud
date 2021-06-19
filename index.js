@@ -5,6 +5,26 @@ import { NativeModules, Platform } from "react-native";
 const { Svprogresshud } = NativeModules;
 if (Platform.OS == "android") Svprogresshud.init();
 
+const between = (x, min, max) => {
+  return x >= min && x <= max;
+};
+
+const platformColor = ([R, G, B, a]) => {
+  let A = 255;
+  if (between(a, 0, 1)) {
+    A = Math.round(a * 255);
+  } else if (between(a, 0, 255)) {
+    A = Math.round(a);
+  }
+  if (Platform.OS == "android") {
+    return (
+      ((A & 0xff) << 24) | ((R & 0xff) << 16) | ((G & 0xff) << 8) | (B & 0xff)
+    );
+  } else {
+    return (A << 24) + (R << 16) + (G << 8) + B;
+  }
+};
+
 class SVProgressHUD {
   static show(status) {
     Svprogresshud.show(status);
@@ -14,104 +34,104 @@ class SVProgressHUD {
     Svprogresshud.showProgress(progress, status);
   }
 
-  static async dismiss(delay = 0.0) {
+  static dismiss(delay = 0.0) {
     Svprogresshud.dismiss(delay);
   }
 
-  static async showInfo(status) {
+  static showInfo(status) {
     Svprogresshud.showInfo(status);
   }
 
-  static async showSuccess(status) {
+  static showSuccess(status) {
     Svprogresshud.showSuccess(status);
   }
 
-  static async showError(status) {
+  static showError(status) {
     Svprogresshud.showError(status);
   }
 
-  static async setDefaultStyle(style = "light") {
+  static setDefaultStyle(style = "light") {
     Svprogresshud.setDefaultStyle(style);
   }
 
-  static async setDefaultMaskType(maskType = "none") {
+  static setDefaultMaskType(maskType = "none") {
     Svprogresshud.setDefaultMaskType(maskType);
   }
 
-  static async setDefaultAnimationType(type = "flat") {
+  static setDefaultAnimationType(type = "flat") {
     Svprogresshud.setDefaultAnimationType(type);
   }
 
-  static async setMinimumSize(width = 0.0, height = 0.0) {
+  static setMinimumSize(width = 0.0, height = 0.0) {
     Svprogresshud.setMinimumSize(width, height);
   }
 
-  static async setRingThickness(ringThickness = 2.0) {
+  static setRingThickness(ringThickness = 2.0) {
     Svprogresshud.setRingThickness(ringThickness);
   }
 
-  static async setRingRadius(radius = 18.0) {
+  static setRingRadius(radius = 18.0) {
     Svprogresshud.setRingRadius(radius);
   }
 
-  static async setRingNoTextRadius(radius = 24.0) {
+  static setRingNoTextRadius(radius = 24.0) {
     Svprogresshud.setRingNoTextRadius(radius);
   }
 
-  static async setCornerRadius(cornerRadius = 14.0) {
+  static setCornerRadius(cornerRadius = 14.0) {
     Svprogresshud.setCornerRadius(cornerRadius);
   }
 
-  static async setBorderColor(color) {
-    Svprogresshud.setBorderColor(color);
+  static setBorderColor(color) {
+    Svprogresshud.setBorderColor(platformColor(color));
   }
 
-  static async setBorderWidth(width = 0.0) {
+  static setBorderWidth(width = 0.0) {
     Svprogresshud.setBorderWidth(width);
   }
 
-  static async setForegroundColor(color = "#000") {
-    Svprogresshud.setForegroundColor(color);
+  static setForegroundColor(color) {
+    Svprogresshud.setForegroundColor(platformColor(color));
   }
 
-  static async setForegroundImageColor(color = "#000") {
-    Svprogresshud.setForegroundImageColor(color);
+  static setForegroundImageColor(color) {
+    Svprogresshud.setForegroundImageColor(platformColor(color));
   }
 
-  static async setBackgroundColor(color = "#fff") {
-    Svprogresshud.setBackgroundColor(color);
+  static setBackgroundColor(color) {
+    Svprogresshud.setBackgroundColor(platformColor(color));
   }
 
-  static async setBackgroundLayerColor(color = "rgba(255,255,255,0.4)") {
-    Svprogresshud.setBackgroundLayerColor(color);
+  static setBackgroundLayerColor(color) {
+    Svprogresshud.setBackgroundLayerColor(platformColor(color));
   }
 
-  static async setImageViewSize(width = 28.0, height = 28.0) {
+  static setImageViewSize(width = 28.0, height = 28.0) {
     Svprogresshud.setImageViewSize(width, height);
   }
 
-  static async setShouldTintImages(shouldTintImages = true) {
+  static setShouldTintImages(shouldTintImages = true) {
     Svprogresshud.setShouldTintImages(shouldTintImages);
   }
 
-  static async setMinimumDismissTimeInterval(interval = 5000.0) {
-    return Svprogresshud.setMinimumDismissTimeInterval(interval);
+  static setMinimumDismissTimeInterval(interval = 5000.0) {
+    Svprogresshud.setMinimumDismissTimeInterval(interval);
   }
 
-  static async setMaximumDismissTimeInterval(interval = 15000.0) {
-    return Svprogresshud.setMaximumDismissTimeInterval(interval);
+  static setMaximumDismissTimeInterval(interval = 15000.0) {
+    Svprogresshud.setMaximumDismissTimeInterval(interval);
   }
 
-  static async setFadeInAnimationDuration(duration = 150.0) {
-    return Svprogresshud.setFadeInAnimationDuration(duration);
+  static setFadeInAnimationDuration(duration = 150.0) {
+    Svprogresshud.setFadeInAnimationDuration(duration);
   }
 
-  static async setFadeOutAnimationDuration(duration = 150.0) {
-    return Svprogresshud.setFadeOutAnimationDuration(duration);
+  static setFadeOutAnimationDuration(duration = 150.0) {
+    Svprogresshud.setFadeOutAnimationDuration(duration);
   }
 
-  static async setHapticsEnabled(hapticsEnabled = false) {
-    return Svprogresshud.setHapticsEnabled(hapticsEnabled);
+  static setHapticsEnabled(hapticsEnabled = false) {
+    Svprogresshud.setHapticsEnabled(hapticsEnabled);
   }
 }
 

@@ -9,7 +9,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SVProgressHUD from 'react-native-svprogresshud';
 
 export default class App extends Component {
@@ -19,35 +19,40 @@ export default class App extends Component {
   };
 
   onPress2 = async () => {
-    setTimeout(SVProgressHUD.dismiss, 2000);
+    console.log(Number(0xffff0000));
+    // console.log(255.toString(16));
+    const raw = 'rgba(0,0,0,0.5)';
+    if (raw.includes('rgba')) {
+      const arr = raw.split(',');
+      console.log(arr);
+    }
+    // const color = Color();
+    // console.log(color.hex());
   };
   onPress3 = async () => {
     // SVProgressHUD.showInfo();
     // SVProgressHUD.showProgress(0.5, 'Loading...');
     // SVProgressHUD.showProgress(0.5);
     // SVProgressHUD.showSuccess('Great Success!');
+
     if (Platform.OS == 'android') {
-      SVProgressHUD.setBackgroundColor(12849);
-      SVProgressHUD.setForegroundColor(-1);
+      SVProgressHUD.setBackgroundColor([0, 255, 0, 255]);
+      SVProgressHUD.setForegroundColor([255, 255, 255, 255]);
       SVProgressHUD.setDefaultMaskType('black');
       SVProgressHUD.setDefaultStyle('custom');
     } else {
       SVProgressHUD.setDefaultStyle('dark');
-      SVProgressHUD.setBackgroundColor(12849);
-      SVProgressHUD.setForegroundColor(-1);
+      SVProgressHUD.setBackgroundColor([255, 255, 255, 125]);
+      SVProgressHUD.setForegroundColor([0, 0, 0, 255]);
       SVProgressHUD.setDefaultMaskType('black');
     }
     SVProgressHUD.show('LOADING...');
-    setTimeout(SVProgressHUD.dismiss, 2000);
+    setTimeout(SVProgressHUD.dismiss, 20000);
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>☆Svprogresshud example☆</Text>
-        <Text style={styles.instructions}>STATUS: {this.state.status}</Text>
-        <Text style={styles.welcome}>☆NATIVE CALLBACK MESSAGE☆</Text>
-        <Text style={styles.instructions}>{this.state.message}</Text>
         <TouchableOpacity onPress={this.onPress3}>
           <Text>Show</Text>
         </TouchableOpacity>

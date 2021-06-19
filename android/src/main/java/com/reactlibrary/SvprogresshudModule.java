@@ -3,7 +3,10 @@
 package com.reactlibrary;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.util.Log;
+
+import androidx.annotation.ColorInt;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -23,6 +26,19 @@ public class SvprogresshudModule extends ReactContextBaseJavaModule {
     private final ReactApplicationContext reactContext;
     private SVProgressHUD svProgressHUD;
     private Activity activity;
+
+    private int reactNativeColor(int color) {
+        int A = (color >> 24) & 0xff; // or color >>> 24
+        int R = (color >> 16) & 0xff;
+        int G = (color >>  8) & 0xff;
+        int B = (color      ) & 0xff;
+        Log.e("A", String.valueOf(A));
+        Log.e("A", String.valueOf(A));
+        Log.e("R", String.valueOf(R));
+        Log.e("G", String.valueOf(G));
+        Log.e("B", String.valueOf(B));
+        return Color.argb(A,R,G,B);
+    }
 
     public SvprogresshudModule(ReactApplicationContext reactContext) {
         super(reactContext);
