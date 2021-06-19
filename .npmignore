@@ -41,6 +41,13 @@ buck-out/
 \.buckd/
 *.keystore
 
+/.github
+circle.yml
+commitlint.config.js
+/android/build
+/website
+/docs
+
 
 example/
 demo/
