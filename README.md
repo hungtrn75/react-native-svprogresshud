@@ -33,6 +33,9 @@ npm
 
 (see demo in `/example`)
 
+<img src="screenshots/example.png" alt="drawing" width="200"/>
+
+
 `SVProgressHUD` is created as a singleton (i.e. it doesn't need to be explicitly allocated and instantiated; you directly call `SVProgressHUD.method()`).
 
 **Use `SVProgressHUD` wisely! Only use it if you absolutely need to perform a task before taking the user forward. Bad use case examples: pull to refresh, infinite scrolling, sending message.**
@@ -227,7 +230,6 @@ SVProgressHUD.showError("Có lỗi xảy ra!");
 ## Running the example app
 
 While developing, you can run the example app to test your changes.
-<img src="screenshots/example.png" alt="drawing" width="200"/>
 
 ## Setup
 
