@@ -89,7 +89,13 @@ public class SVProgressHUD {
         if (activity != null) {
             Log.e("Activity", activity.toString());
             this.activity = activity;
-            this.init();
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    init();
+                }
+            });
+
         }
 
     }
@@ -373,7 +379,6 @@ public class SVProgressHUD {
         if (imageView != null) {
             imageContainer.addView(imageView);
         } else if (progress != -1) {
-            Log.e("progress", String.valueOf(progress));
             progressAnimatedView.setProgress(progress);
             progressAnimatedView.setRadius(status != null ? this.ringRadius : this.ringNoTextRadius);
             imageContainer.addView(progressAnimatedView);
@@ -390,17 +395,11 @@ public class SVProgressHUD {
         statusLabel.setVisibility(status != null ? View.VISIBLE : View.GONE);
 
         if (contentView.getParent() == null) {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-//                    decorView.removeAllViews();
-                    decorView.removeView(contentView);
-                    decorView.addView(contentView);
-                    backgroundLayer.startAnimation(animBackgroundLayerFadeIn);
-                    backgroundGradientLayer.startAnimation(animBackgroundLayerFadeIn);
-                    hudView.startAnimation(animHudViewFadeIn);
-                }
-            });
+            decorView.addView(contentView);
+            backgroundLayer.startAnimation(animBackgroundLayerFadeIn);
+            backgroundGradientLayer.startAnimation(animBackgroundLayerFadeIn);
+            hudView.startAnimation(animHudViewFadeIn);
+
 
         }
     }

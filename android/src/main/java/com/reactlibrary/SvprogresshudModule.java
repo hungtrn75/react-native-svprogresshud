@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.util.Log;
 
 import androidx.annotation.ColorInt;
+import androidx.arch.core.util.Function;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -22,7 +23,6 @@ import com.reactlibrary.svprogresshud.SVProgressHUDMaskType;
 import com.reactlibrary.svprogresshud.SVProgressHUDStyle;
 
 public class SvprogresshudModule extends ReactContextBaseJavaModule {
-    private static final String LOADING = "LOADING";
     private final ReactApplicationContext reactContext;
     private SVProgressHUD svProgressHUD;
     private Activity activity;
@@ -61,8 +61,14 @@ public class SvprogresshudModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     private void show(String status) {
-        if (status == null) status = LOADING;
-        svProgressHUD.showWithStatus(status);
+        final String finalStatus = status;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                svProgressHUD.showWithStatus(finalStatus);
+            }
+        });
+
     }
 
     @ReactMethod
@@ -71,27 +77,46 @@ public class SvprogresshudModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    private void showProgress(float progress, String status) {
-        if (status == null) status = LOADING;
-        svProgressHUD.showProgress(progress, status);
+    private void showProgress(final float progress, String status) {
+        final String finalStatus = status;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                svProgressHUD.showProgress(progress, finalStatus);
+            }
+        });
+
     }
 
     @ReactMethod
-    private void showInfo(String status) {
-        if (status == null) status = LOADING;
-        svProgressHUD.showInfoWithStatus(status);
+    private void showInfo(final String status) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                svProgressHUD.showInfoWithStatus(status);
+            }
+        });
+
     }
 
     @ReactMethod
-    private void showSuccess(String status) {
-        if (status == null) status = LOADING;
-        svProgressHUD.showSuccessWithStatus(status);
+    private void showSuccess(final String status) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                svProgressHUD.showSuccessWithStatus(status);
+            }
+        });
     }
 
     @ReactMethod
-    private void showError(String status) {
-        if (status == null) status = LOADING;
-        svProgressHUD.showErrorWithStatus(status);
+    private void showError(final String status) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                svProgressHUD.showErrorWithStatus(status);
+            }
+        });
     }
 
     @ReactMethod

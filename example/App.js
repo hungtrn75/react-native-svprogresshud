@@ -62,7 +62,7 @@ const App = () => {
         SVProgressHUD.dismiss();
         return;
       }
-      SVProgressHUD.showProgress(progress / 100, '');
+      SVProgressHUD.showProgress(progress / 100);
     }, 50);
   };
 
@@ -83,20 +83,20 @@ const App = () => {
     clear();
     SVProgressHUD.setForegroundColor([0, 0, 255, 255]);
     SVProgressHUD.showInfo('Useful Information.');
-    // dismissAfter5s()
+    dismissAfter5s();
   };
   const showSuccessWithStatus = () => {
     clear();
     SVProgressHUD.setForegroundColor([0, 255, 0, 255]);
     SVProgressHUD.showSuccess('Great Success!');
-    // dismissAfter5s()
+    dismissAfter5s();
   };
 
   const showErrorWithStatus = () => {
     clear();
     SVProgressHUD.setForegroundColor([255, 0, 0, 255]);
     SVProgressHUD.showError('Failed with Error');
-    // dismissAfter5s()
+    dismissAfter5s();
   };
 
   const dismiss = () => {
@@ -109,17 +109,14 @@ const App = () => {
 
   const custom = () => {
     clear();
+    SVProgressHUD.setBackgroundColor([255, 15, 33, 255]);
+    SVProgressHUD.setForegroundColor([255, 255, 255, 255]);
+    SVProgressHUD.setMinimumSize(150, 150);
+    SVProgressHUD.setDefaultMaskType('black');
     if (Platform.OS == 'android') {
-      SVProgressHUD.setBackgroundColor([0, 255, 0, 255]);
-      SVProgressHUD.setForegroundColor([255, 255, 255, 255]);
-      SVProgressHUD.setDefaultMaskType('black');
       SVProgressHUD.setDefaultStyle('custom');
     } else {
       SVProgressHUD.setDefaultStyle('dark');
-      SVProgressHUD.setMinimumSize(150, 150);
-      SVProgressHUD.setBackgroundColor([255, 255, 255, 255]);
-      SVProgressHUD.setForegroundColor([255, 0, 0, 255]);
-      SVProgressHUD.setDefaultMaskType('black');
     }
     SVProgressHUD.show('Loading...');
     dismissAfter5s();
