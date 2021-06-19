@@ -1,10 +1,13 @@
-
 # react-native-svprogresshud
 
 A clean and lightweight progress HUD for react native app, based on SVProgressHUD.
 
 This package migrated from [flutter_svprogresshud](https://github.com/leanflutter/flutter_svprogresshud) to react native based on [create_react_native_module](https://github.com/brodybits/create-react-native-module#readme) package
+
+![SVProgressHUD](screenshots/demo.png)
+
 ## Installation
+
 yarn
 
 `$ yarn add react-native-svprogresshud`
@@ -14,9 +17,13 @@ npm
 `$ npm install react-native-svprogresshud`
 
 ### Mostly automatic installation
+
 `$ react-native link react-native-svprogresshud`
+
 ### iOS
+
 `$ npx pod-install`
+
 ## Usage
 
 (see demo in `/example`)
@@ -38,14 +45,14 @@ You can show the status of indeterminate tasks using one of the following:
 
 ```jsx
 SVProgressHUD.show();
-SVProgressHUD.show(status: 'Trạng thái');
+SVProgressHUD.show((status: "Trạng thái"));
 ```
 
 If you'd like the HUD to reflect the progress of a task, use one of these:
 
 ```jsx
 SVProgressHUD.showProgress(0.28);
-SVProgressHUD.showProgress(0.96, status: 'Đang xử lý...');
+SVProgressHUD.showProgress(0.96, (status: "Đang xử lý..."));
 ```
 
 ### Dismissing the HUD
@@ -53,100 +60,172 @@ SVProgressHUD.showProgress(0.96, status: 'Đang xử lý...');
 The HUD can be dismissed using:
 
 ```jsx
-SVProgressHUD.dismiss()
+SVProgressHUD.dismiss();
 SVProgressHUD.dismiss(2000);
 ```
 
 Show a confirmation glyph before before getting dismissed a little bit later. The display time depends on `minimumDismissTimeInterval` and the length of the given string.
 
 ```jsx
-SVProgressHUD.showInfo(status: 'Thông tin.');
-SVProgressHUD.showSuccess(status: 'Thành công!');
-SVProgressHUD.showError(status: 'Có lỗi xảy ra!');
+SVProgressHUD.showInfo((status: "Thông tin."));
+SVProgressHUD.showSuccess((status: "Thành công!"));
+SVProgressHUD.showError((status: "Có lỗi xảy ra!"));
 ```
 
 ## API
+
 ### Props
+
 - `status` - `string`
-- `color` - `array` - `[red, green, blue, alpha]` - `alpha` between `0` and `1` or between `0` and `255` 
+- `color` - `array` - `[red, green, blue, alpha]` - `alpha` between `0` and `1` or between `0` and `255`
+
 ### Functions
+
 #### `void show(status)`
+
 ---
+
 #### `void showProgress(progress, status)`
+
 - `progress` - `number` between `0` and `1`
 
 #### `void dismiss(delay)`
+
 - `delay` - `duration` in milliseconds
- #### `void showSuccess(status)`
+
+#### `void showSuccess(status)`
+
 ---
- #### `void showInfo(status)`
+
+#### `void showInfo(status)`
+
 ---
- #### `void showError(status)`
+
+#### `void showError(status)`
+
 ---
- #### `void setDefaultStyle(style)`
+
+#### `void setDefaultStyle(style)`
+
 - `style` - default is `"light"`. One of: `"light" || "dark" || "custom"`
+
 ---
- #### `void setDefaultMaskType(maskType)`
+
+#### `void setDefaultMaskType(maskType)`
+
 - `style` - default is `"none"`. One of: `"none" || "clear" || "black" || "gradient" || "custom"`
+
 ---
+
 #### `void setDefaultAnimationType(type)`
+
 - `style` - default is `"flat"`. One of: `"flat" || "native"`
+
 ---
+
 #### `void setMinimumSize(width, height)`
+
 - `width` - default is `0.0`
--  `height` - default is `0.0`
+- `height` - default is `0.0`
+
 ---
+
 #### `void setRingThickness(ringThickness)`
+
 - `ringThickness` - default is `2.0`
+
 ---
+
 #### `void setRingRadius(radius)`
+
 - `radius` - default is `18.0`
+
 ---
+
 #### `void setRingNoTextRadius(radius)`
+
 - `radius` - default is `24.0`
+
 ---
+
 #### `void setCornerRadius(radius)`
+
 - `radius` - default is `14.0`
+
 ---
+
 #### `void setBorderColor(color)`
+
 ---
+
 #### `void setBorderWidth(width)`
+
 - `width` - default is `0.0`
+
 #### `void setForegroundColor(color)`
+
 ---
+
 #### `void setForegroundImageColor(color)`
+
 ---
+
 #### `void setBackgroundColor(color)`
+
 ---
+
 #### `void setBackgroundLayerColor(color)`
+
 ---
+
 #### `void setImageViewSize(width, height)`
+
 - `width` - default is `28.0`
--  `height` - default is `28.0`
+- `height` - default is `28.0`
+
 ---
+
 #### `void setShouldTintImages(shouldTintImages)`
+
 - `shouldTintImages` - default is `true`
+
 ---
+
 #### `void setMinimumDismissTimeInterval(interval)`
+
 - `interval` - default is `5000` milliseconds
+
 ---
- #### `void setMaximumDismissTimeInterval(interval)`
+
+#### `void setMaximumDismissTimeInterval(interval)`
+
 - `interval` - default is `15000` milliseconds
+
 ---
+
 #### `void setFadeInAnimationDuration(interval)`
+
 - `interval` - default is `150` milliseconds
+
 ---
+
 #### `void setFadeOutAnimationDuration(interval)`
+
 - `interval` - default is `150` milliseconds
+
 ---
+
 #### `void setHapticsEnabled(hapticsEnabled)`
+
 - `interval` - default is `false`
+
 ## Running the example app
+
 While developing, you can run the example app to test your changes.
 
 ## Setup
 
-- Clone the repository 
+- Clone the repository
 - Run `yarn` in the root directory to install dependencies, and again in `example`.
 - (on iOS) Run `npx pod-install` from the `example` directory
 
@@ -154,6 +233,7 @@ While developing, you can run the example app to test your changes.
 
 - Run `yarn run:android` to run on Android
 - Run `yarn run:ios` to run on iOS
+
 ## Related Links
 
 - https://github.com/SVProgressHUD/SVProgressHUD
