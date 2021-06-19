@@ -4,7 +4,12 @@ A clean and lightweight progress HUD for react native app, based on SVProgressHU
 
 This package migrated from [flutter_svprogresshud](https://github.com/leanflutter/flutter_svprogresshud) to react native based on [create_react_native_module](https://github.com/brodybits/create-react-native-module#readme) package
 
-![SVProgressHUD](screenshots/demo.png)
+<p float="left">
+    <img src="screenshots/demo.png" alt="drawing" width="200"/>
+    <img src="screenshots/progress.png" alt="drawing" width="200"/>
+    <img src="screenshots/success.png" alt="drawing" width="200"/>
+    <img src="screenshots/error.png" alt="drawing" width="200"/>
+</p>
 
 ## Installation
 
@@ -45,14 +50,14 @@ You can show the status of indeterminate tasks using one of the following:
 
 ```jsx
 SVProgressHUD.show();
-SVProgressHUD.show((status: "Trạng thái"));
+SVProgressHUD.show("Trạng thái");
 ```
 
 If you'd like the HUD to reflect the progress of a task, use one of these:
 
 ```jsx
 SVProgressHUD.showProgress(0.28);
-SVProgressHUD.showProgress(0.96, (status: "Đang xử lý..."));
+SVProgressHUD.showProgress(0.96, "Đang xử lý...");
 ```
 
 ### Dismissing the HUD
@@ -67,9 +72,9 @@ SVProgressHUD.dismiss(2000);
 Show a confirmation glyph before before getting dismissed a little bit later. The display time depends on `minimumDismissTimeInterval` and the length of the given string.
 
 ```jsx
-SVProgressHUD.showInfo((status: "Thông tin."));
-SVProgressHUD.showSuccess((status: "Thành công!"));
-SVProgressHUD.showError((status: "Có lỗi xảy ra!"));
+SVProgressHUD.showInfo("Thông tin.");
+SVProgressHUD.showSuccess("Thành công!");
+SVProgressHUD.showError("Có lỗi xảy ra!");
 ```
 
 ## API

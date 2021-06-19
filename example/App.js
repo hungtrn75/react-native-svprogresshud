@@ -33,7 +33,6 @@ export default class App extends Component {
     // SVProgressHUD.showInfo();
     // SVProgressHUD.showProgress(0.5, 'Loading...');
     // SVProgressHUD.showProgress(0.5);
-    // SVProgressHUD.showSuccess('Great Success!');
 
     if (Platform.OS == 'android') {
       SVProgressHUD.setBackgroundColor([0, 255, 0, 255]);
@@ -42,12 +41,13 @@ export default class App extends Component {
       SVProgressHUD.setDefaultStyle('custom');
     } else {
       SVProgressHUD.setDefaultStyle('dark');
-      SVProgressHUD.setBackgroundColor([255, 255, 255, 125]);
-      SVProgressHUD.setForegroundColor([0, 0, 0, 255]);
+      SVProgressHUD.setBackgroundColor([255, 255, 255, 255]);
+      SVProgressHUD.setForegroundColor([255, 0, 0, 255]);
       SVProgressHUD.setDefaultMaskType('black');
     }
-    SVProgressHUD.show('LOADING...');
-    setTimeout(SVProgressHUD.dismiss, 20000);
+    // SVProgressHUD.showProgress(0.28, 'Đang xử lý...');
+    SVProgressHUD.showError('Có lỗi xảy ra!');
+    setTimeout(SVProgressHUD.dismiss, 5000);
   };
 
   render() {
