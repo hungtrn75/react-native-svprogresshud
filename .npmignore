@@ -42,11 +42,9 @@ buck-out/
 *.keystore
 
 /.github
-circle.yml
-commitlint.config.js
-/android/build
-/website
-/docs
+/android/build/
+/website/
+/docs/
 
 
 example/
@@ -56,3 +54,4 @@ screenshots/
 .eslintignore
 .eslintrc
 yarn.lock
+
