@@ -41,12 +41,9 @@ buck-out/
 \.buckd/
 *.keystore
 
-/.github
-/android/build/
-/android/.gradle/
-/website/
-/docs/
-
+.github
+android/build/
+android/.gradle/
 
 example/
 demo/
@@ -54,5 +51,6 @@ screenshots/
 .editorconfig
 .eslintignore
 .eslintrc
+.tgz
 yarn.lock
 

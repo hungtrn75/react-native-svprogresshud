@@ -1,16 +1,9 @@
 {
   "name": "react-native-svprogresshud",
   "title": "React Native Svprogresshud",
-  "version": "1.0.4",
-  "description": "TODO",
+  "version": "1.0.0",
+  "description": "A clean and lightweight progress HUD for react native app, based on SVProgressHUD.",
   "main": "index.js",
-  "files": [
-    "README.md",
-    "android",
-    "index.js",
-    "ios",
-    "react-native-svprogresshud.podspec"
-  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +16,8 @@
     "react-native",
     "progress",
     "native",
+    "android",
+    "ios",
     "svprogresshud"
   ],
   "author": {
