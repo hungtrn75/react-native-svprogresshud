@@ -1,7 +1,7 @@
 {
   "name": "react-native-svprogresshud",
   "title": "React Native Svprogresshud",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "A clean and lightweight progress HUD for react native app, based on SVProgressHUD.",
   "main": "index.js",
   "scripts": {
