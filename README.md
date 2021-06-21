@@ -6,7 +6,6 @@ This package migrated from [flutter_svprogresshud](https://github.com/leanflutte
 
 <p float="left">
     <img src="screenshots/demo.png" alt="drawing" width="200"/>
-    <img src="screenshots/progress.png" alt="drawing" width="200"/>
     <img src="screenshots/success.png" alt="drawing" width="200"/>
     <img src="screenshots/error.png" alt="drawing" width="200"/>
 </p>
@@ -97,9 +96,13 @@ SVProgressHUD.showError("Có lỗi xảy ra!");
 
 - `progress` - `number` between `0` and `1`
 
+---
+
 #### `void dismiss(delay)`
 
 - `delay` - `duration` in milliseconds
+
+---
 
 #### `void showSuccess(status)`
 
@@ -169,6 +172,8 @@ SVProgressHUD.showError("Có lỗi xảy ra!");
 #### `void setBorderWidth(width)`
 
 - `width` - default is `0.0`
+
+---
 
 #### `void setForegroundColor(color)`
 
