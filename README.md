@@ -1,5 +1,8 @@
 # react-native-svprogresshud
 
+[![Version](https://img.shields.io/npm/v/react-native-svprogresshud.svg)](https://www.npmjs.com/package/react-native-svg)
+[![NPM](https://img.shields.io/npm/dm/react-native-svprogresshud.svg)](https://www.npmjs.com/package/react-native-svg)
+
 A clean and lightweight progress HUD for react native app, based on SVProgressHUD.
 
 This package migrated from [flutter_svprogresshud](https://github.com/leanflutter/flutter_svprogresshud) to react native based on [create_react_native_module](https://github.com/brodybits/create-react-native-module#readme) package
