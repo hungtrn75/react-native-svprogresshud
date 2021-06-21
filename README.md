@@ -1,7 +1,7 @@
 # react-native-svprogresshud
 
-[![Version](https://img.shields.io/npm/v/react-native-svprogresshud.svg)](https://www.npmjs.com/package/react-native-svg)
-[![NPM](https://img.shields.io/npm/dm/react-native-svprogresshud.svg)](https://www.npmjs.com/package/react-native-svg)
+[![Version](https://img.shields.io/npm/v/react-native-svprogresshud.svg)](https://www.npmjs.com/package/react-native-svprogresshud)
+[![NPM](https://img.shields.io/npm/dm/react-native-svprogresshud.svg)](https://www.npmjs.com/package/react-native-svprogresshud)
 
 A clean and lightweight progress HUD for react native app, based on SVProgressHUD.
 
